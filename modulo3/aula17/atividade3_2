@@ -1,0 +1,31 @@
+console.log('bem vindo ao jogo da adivinhação')
+
+const readline = require ('readline')
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
+let numeroAleatorio = Math.floor(Math.random() * 100) +1
+let tentativas = 0
+let limite = 10
+
+function palpite() {
+    if(tentativas < limite) {
+    rl.question('qual número deseja chutar?' ,(valor)=>{
+        if(numeroAleatorio > valor){
+            console.log(' o número é maior')
+            tentativas++
+            palpite()
+        } else if(numeroAleatorio < valor) {
+            console.log('o número é menor')
+            tentativas++
+            palpite()
+        }else{
+            tentativas++
+            console.log(`parabéns você acertou o número em ${tentativas} tentativas`)
+            rl.close()
+        }
+    })
+} 
